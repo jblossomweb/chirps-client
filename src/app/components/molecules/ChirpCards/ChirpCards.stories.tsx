@@ -1,4 +1,5 @@
 import React from 'react';
+import Window from 'window-or-global';
 
 import { KnobsInterface, storyBuilder } from 'core/stories';
 import Template from 'app/templates/LightCentered';
@@ -9,6 +10,9 @@ import ChirpCards, { Props } from '.';
 
 export const mockProps: Props = {
   chirps: mockChirps,
+  upvoteChirp: (id: string) => {
+    Window.console.log(`upvoteChirp(${id})`);
+  }
 };
 
 export const renderScene = (
@@ -19,6 +23,7 @@ export const renderScene = (
 ) => (
   <ChirpCards
     chirps={knobs.object('chirps', props.chirps)}
+    upvoteChirp={mockProps.upvoteChirp}
   />
 );
 

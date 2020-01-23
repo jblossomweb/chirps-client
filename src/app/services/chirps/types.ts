@@ -17,6 +17,7 @@ export interface RequestInterface {
   getChirp: { id: AppTypes.Chirp['id'] },
   getChirps: {},
   updateChirp: { id: AppTypes.Chirp['id'], text: AppTypes.Chirp['text'] },
+  upvoteChirp: { id: AppTypes.Chirp['id'] },
   deleteChirp: { id: AppTypes.Chirp['id'] },
 };
 
@@ -29,6 +30,8 @@ export interface ResponseInterface {
   getChirpsError: ServiceErrorResponse,
   updateChirpSuccess: AppTypes.Chirp,
   updateChirpError: ServiceErrorResponse,
+  upvoteChirpSuccess: AppTypes.Chirp,
+  upvoteChirpError: ServiceErrorResponse,
   deleteChirpSuccess: ServiceDeleteResponse,
   deleteChirpError: ServiceErrorResponse,
 };
@@ -68,6 +71,13 @@ export interface ServiceInterface {
   ) => Promise<
     ResponseInterface['updateChirpSuccess'] |
     ResponseInterface['updateChirpError']
+  >,
+
+  upvoteChirp: (
+    id: string,
+  ) => Promise<
+    ResponseInterface['upvoteChirpSuccess'] |
+    ResponseInterface['upvoteChirpError']
   >,
 
   deleteChirp: (

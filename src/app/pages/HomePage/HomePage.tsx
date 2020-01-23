@@ -15,7 +15,8 @@ export interface StateProps {
 
 export interface DispatchProps {
   getChirps: () => void,
-  createChirp: (chirp: string) => void,
+  createChirp: (chirp: AppTypes.Chirp['text']) => void,
+  upvoteChirp: (id: AppTypes.Chirp['id']) => void,
 };
 
 export type Props = StateProps & DispatchProps;
@@ -24,6 +25,7 @@ const HomePage: React.FC<Props> = ({
   chirps,
   getChirps,
   createChirp,
+  upvoteChirp,
   thinking,
 }) => (
   <Template>
@@ -40,6 +42,7 @@ const HomePage: React.FC<Props> = ({
       </p>
       <ChirpCards
         chirps={chirps || []}
+        upvoteChirp={upvoteChirp}
       />
       <p>
         <Button

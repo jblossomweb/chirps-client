@@ -92,3 +92,48 @@ export const createChirpError: (
     error,
   },
 });
+
+/*
+ * CHIRPS_UPVOTE_CHIRP
+ */
+
+export const upvoteChirp: (
+  chirp: ChirpsServiceTypes.RequestInterface['upvoteChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => ActionTypes.Interface['CHIRPS_UPVOTE_CHIRP'] = (
+  chirp: ChirpsServiceTypes.RequestInterface['upvoteChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => {
+  thunks.upvoteChirp(chirp, service)(dispatch);
+  return {
+    type: ActionTypes.CHIRPS_UPVOTE_CHIRP,
+  };
+};
+
+/*
+ * CHIRPS_UPVOTE_CHIRP_SUCCESS
+ */
+export const upvoteChirpSuccess: (
+  response: ChirpsServiceTypes.ResponseInterface['upvoteChirpSuccess'],
+) => ActionTypes.Interface['CHIRPS_UPVOTE_CHIRP_SUCCESS'] = response => ({
+  type: ActionTypes.CHIRPS_UPVOTE_CHIRP_SUCCESS,
+  payload: {
+    chirp: response,
+  },
+});
+
+/*
+ * CHIRPS_UPVOTE_CHIRP_ERROR
+ */
+export const upvoteChirpError: (
+  error: ChirpsServiceTypes.ResponseInterface['upvoteChirpError'],
+) => ActionTypes.Interface['CHIRPS_UPVOTE_CHIRP_ERROR'] = error => ({
+  type: ActionTypes.CHIRPS_UPVOTE_CHIRP_ERROR,
+  payload: {
+    error,
+  },
+});

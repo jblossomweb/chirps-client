@@ -3,6 +3,7 @@ export interface Chirp {
   text: string,
   created: number,
   updated?: number,
+  votes?: number,
 };
 
 export type Chirps = Chirp[];

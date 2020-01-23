@@ -90,6 +90,45 @@ export const createChirpError = (
 ;
 
 /*
+ * CHIRPS_UPVOTE_CHIRP
+ */
+export const upvoteChirp = (
+  state: AppState,
+  action: types.Interface['CHIRPS_UPVOTE_CHIRP'],
+) => state
+  .setIn(paths.thinking(), true)
+;
+
+/*
+ * CHIRPS_UPVOTE_CHIRP_SUCCESS
+ */
+export const upvoteChirpSuccess = (
+  state: AppState,
+  { payload }: types.Interface['CHIRPS_UPVOTE_CHIRP_SUCCESS'],
+) => {
+  const { chirp } = payload;
+  return state
+    .setIn(paths.thinking(), false)
+    .setIn(paths.error(), null)
+    .setIn(
+      paths.chirp(chirp.id),
+      fromJS(chirp),
+    )
+  ;
+};
+
+/*
+ * CHIRPS_UPVOTE_CHIRP_ERROR
+ */
+export const upvoteChirpError = (
+  state: AppState,
+  { payload }: types.Interface['CHIRPS_UPVOTE_CHIRP_ERROR'],
+) => state
+  .setIn(paths.thinking(), false)
+  .setIn(paths.error(), payload.error)
+;
+
+/*
  * default export
  */
 export default {
@@ -99,4 +138,7 @@ export default {
   [types.CHIRPS_CREATE_CHIRP as string]: createChirp,
   [types.CHIRPS_CREATE_CHIRP_SUCCESS as string]: createChirpSuccess,
   [types.CHIRPS_CREATE_CHIRP_ERROR as string]: createChirpError,
+  [types.CHIRPS_UPVOTE_CHIRP as string]: upvoteChirp,
+  [types.CHIRPS_UPVOTE_CHIRP_SUCCESS as string]: upvoteChirpSuccess,
+  [types.CHIRPS_UPVOTE_CHIRP_ERROR as string]: upvoteChirpError,
 };

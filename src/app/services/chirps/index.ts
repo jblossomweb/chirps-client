@@ -82,6 +82,22 @@ class ChirpsService implements ServiceInterface {
     }, this.rest);
   }
 
+  public upvoteChirp (
+    id: string,
+  ) {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    const endpoint = `/chirps/${id}/votes`;
+    const url = `${this.apiUrl}${endpoint}`;
+    const body = {};
+    return promisePost({
+      url,
+      body,
+      headers,
+    }, this.rest);
+  }
+
   public deleteChirp (
     id: string,
   ) {

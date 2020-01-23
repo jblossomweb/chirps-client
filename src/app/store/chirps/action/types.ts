@@ -8,6 +8,10 @@ export const CHIRPS_CREATE_CHIRP = 'CHIRPS_CREATE_CHIRP';
 export const CHIRPS_CREATE_CHIRP_SUCCESS = 'CHIRPS_CREATE_CHIRP_SUCCESS';
 export const CHIRPS_CREATE_CHIRP_ERROR = 'CHIRPS_CREATE_CHIRP_ERROR';
 
+export const CHIRPS_UPVOTE_CHIRP = 'CHIRPS_UPVOTE_CHIRP';
+export const CHIRPS_UPVOTE_CHIRP_SUCCESS = 'CHIRPS_UPVOTE_CHIRP_SUCCESS';
+export const CHIRPS_UPVOTE_CHIRP_ERROR = 'CHIRPS_UPVOTE_CHIRP_ERROR';
+
 export interface Interface {
 
   [CHIRPS_GET_CHIRPS]: {
@@ -41,6 +45,24 @@ export interface Interface {
 
   [CHIRPS_CREATE_CHIRP_ERROR]: {
     type: 'CHIRPS_CREATE_CHIRP_ERROR',
+    payload: {
+      error: Error,
+    },
+  },
+
+  [CHIRPS_UPVOTE_CHIRP]: {
+    type: 'CHIRPS_UPVOTE_CHIRP',
+  },
+
+  [CHIRPS_UPVOTE_CHIRP_SUCCESS]: {
+    type: 'CHIRPS_UPVOTE_CHIRP_SUCCESS',
+    payload: {
+      chirp: AppTypes.Chirp,
+    },
+  },
+
+  [CHIRPS_UPVOTE_CHIRP_ERROR]: {
+    type: 'CHIRPS_UPVOTE_CHIRP_ERROR',
     payload: {
       error: Error,
     },

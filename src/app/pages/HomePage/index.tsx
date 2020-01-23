@@ -41,6 +41,11 @@ export const mapDispatchToProps = (
   ) => dispatch(
     chirpActions.createChirp({ text }, chirpsService)(dispatch)
   ),
+  upvoteChirp: (
+    id: string,
+  ) => dispatch(
+    chirpActions.upvoteChirp({ id }, chirpsService)(dispatch)
+  ),
 });
 
 export default connect(

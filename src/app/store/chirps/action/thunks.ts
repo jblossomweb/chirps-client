@@ -30,3 +30,17 @@ export const createChirp = (
     action.createChirpError(error as ChirpsServiceTypes.ResponseInterface['createChirpError']),
   ),
 );
+
+export const upvoteChirp = (
+  chirp: ChirpsServiceTypes.RequestInterface['upvoteChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => service.upvoteChirp(chirp.id).then(
+  (response) => dispatch(
+    action.upvoteChirpSuccess(response as ChirpsServiceTypes.ResponseInterface['upvoteChirpSuccess']),
+  ),
+  (error) => dispatch(
+    action.upvoteChirpError(error as ChirpsServiceTypes.ResponseInterface['upvoteChirpError']),
+  ),
+);
