@@ -17,7 +17,13 @@ const getChirpsSelector = (
 
 export const getChirps = createSelector([
   getChirpsSelector,
-], (chirps: DataTypes.Chirps) => chirps.valueSeq());
+], (chirps: DataTypes.Chirps) => chirps
+  .valueSeq()
+  .sortBy(
+    chirp => chirp.get('created'),
+  )
+  .reverse()
+);
 
 /*
  * getThinking

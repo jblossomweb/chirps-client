@@ -3,6 +3,7 @@ import { Button } from 'semantic-ui-react';
 
 import Template from 'app/templates/LightCentered';
 import ChirpCards from 'app/components/molecules/ChirpCards';
+import ChirpForm from 'app/components/organisms/ChirpForm';
 
 import * as AppTypes from 'app/types';
 import * as Style from './HomePage.style';
@@ -14,6 +15,7 @@ export interface StateProps {
 
 export interface DispatchProps {
   getChirps: () => void,
+  createChirp: (chirp: string) => void,
 };
 
 export type Props = StateProps & DispatchProps;
@@ -21,6 +23,7 @@ export type Props = StateProps & DispatchProps;
 const HomePage: React.FC<Props> = ({
   chirps,
   getChirps,
+  createChirp,
   thinking,
 }) => (
   <Template>
@@ -28,6 +31,12 @@ const HomePage: React.FC<Props> = ({
       <h1>Chirps</h1>
       <p>
         Handshake Demo App
+      </p>
+      <p>
+        <ChirpForm
+          thinking={thinking}
+          createChirp={createChirp}
+        />
       </p>
       <ChirpCards
         chirps={chirps || []}

@@ -16,3 +16,17 @@ export const getChirps = (
     action.getChirpsError(error as ChirpsServiceTypes.ResponseInterface['getChirpsError']),
   ),
 );
+
+export const createChirp = (
+  chirp: ChirpsServiceTypes.RequestInterface['createChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => service.createChirp(chirp.text).then(
+  (response) => dispatch(
+    action.createChirpSuccess(response as ChirpsServiceTypes.ResponseInterface['createChirpSuccess']),
+  ),
+  (error) => dispatch(
+    action.createChirpError(error as ChirpsServiceTypes.ResponseInterface['createChirpError']),
+  ),
+);

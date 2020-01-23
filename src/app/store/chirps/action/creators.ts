@@ -47,3 +47,48 @@ export const getChirpsError: (
     error,
   },
 });
+
+/*
+ * CHIRPS_CREATE_CHIRP
+ */
+
+export const createChirp: (
+  chirp: ChirpsServiceTypes.RequestInterface['createChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => ActionTypes.Interface['CHIRPS_CREATE_CHIRP'] = (
+  chirp: ChirpsServiceTypes.RequestInterface['createChirp'],
+  service: ChirpsServiceTypes.ServiceInterface,
+) => (
+  dispatch: Dispatch<AnyAction>,
+) => {
+  thunks.createChirp(chirp, service)(dispatch);
+  return {
+    type: ActionTypes.CHIRPS_CREATE_CHIRP,
+  };
+};
+
+/*
+ * CHIRPS_CREATE_CHIRP_SUCCESS
+ */
+export const createChirpSuccess: (
+  response: ChirpsServiceTypes.ResponseInterface['createChirpSuccess'],
+) => ActionTypes.Interface['CHIRPS_CREATE_CHIRP_SUCCESS'] = response => ({
+  type: ActionTypes.CHIRPS_CREATE_CHIRP_SUCCESS,
+  payload: {
+    chirp: response,
+  },
+});
+
+/*
+ * CHIRPS_CREATE_CHIRP_ERROR
+ */
+export const createChirpError: (
+  error: ChirpsServiceTypes.ResponseInterface['createChirpError'],
+) => ActionTypes.Interface['CHIRPS_CREATE_CHIRP_ERROR'] = error => ({
+  type: ActionTypes.CHIRPS_CREATE_CHIRP_ERROR,
+  payload: {
+    error,
+  },
+});

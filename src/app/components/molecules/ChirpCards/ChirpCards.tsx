@@ -15,7 +15,7 @@ export const mapChirp: (
   chirp: AppTypes.Chirp,
 ) => ({
   meta: moment(chirp.created).fromNow(),
-  description: chirp.text,
+  description: chirp.text.toUpperCase(),
 });
 
 export const ChirpCards: React.FC<Props> = ({

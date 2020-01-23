@@ -51,10 +51,52 @@ export const getChirpsError = (
 ;
 
 /*
+ * CHIRPS_CREATE_CHIRP
+ */
+export const createChirp = (
+  state: AppState,
+  action: types.Interface['CHIRPS_CREATE_CHIRP'],
+) => state
+  .setIn(paths.thinking(), true)
+;
+
+/*
+ * CHIRPS_CREATE_CHIRP_SUCCESS
+ */
+export const createChirpSuccess = (
+  state: AppState,
+  { payload }: types.Interface['CHIRPS_CREATE_CHIRP_SUCCESS'],
+) => {
+  const { chirp } = payload;
+  return state
+    .setIn(paths.thinking(), false)
+    .setIn(paths.error(), null)
+    .setIn(
+      paths.chirp(chirp.id),
+      fromJS(chirp),
+    )
+  ;
+};
+
+/*
+ * CHIRPS_CREATE_CHIRP_ERROR
+ */
+export const createChirpError = (
+  state: AppState,
+  { payload }: types.Interface['CHIRPS_CREATE_CHIRP_ERROR'],
+) => state
+  .setIn(paths.thinking(), false)
+  .setIn(paths.error(), payload.error)
+;
+
+/*
  * default export
  */
 export default {
   [types.CHIRPS_GET_CHIRPS as string]: getChirps,
   [types.CHIRPS_GET_CHIRPS_SUCCESS as string]: getChirpsSuccess,
   [types.CHIRPS_GET_CHIRPS_ERROR as string]: getChirpsError,
+  [types.CHIRPS_CREATE_CHIRP as string]: createChirp,
+  [types.CHIRPS_CREATE_CHIRP_SUCCESS as string]: createChirpSuccess,
+  [types.CHIRPS_CREATE_CHIRP_ERROR as string]: createChirpError,
 };
